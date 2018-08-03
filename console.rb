@@ -15,7 +15,15 @@ customer1 = Customer.new(
   }
 )
 
+customer2 = Customer.new(
+  {
+    'name' => "Richard",
+    'funds' => 10
+  }
+)
+
 customer1.save()
+customer2.save()
 
 film1 = Film.new(
   {
