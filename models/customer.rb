@@ -11,4 +11,11 @@ class Customer
     @funds = options['funds']
   end
 
+  def save()
+    sql = "INSERT INTO customers (name, funds) VALUES ($1, $2) RETURNING id"
+    values = [@name, @funds]
+    customer = SqlRunner.run(sql, values)
+    @id = customer[0]['id'].to_i()
+  end
+
 end
