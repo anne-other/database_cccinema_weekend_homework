@@ -32,7 +32,15 @@ film1 = Film.new(
   }
 )
 
+film2 = Film.new(
+  {
+    'title' => "Sweeney Todd",
+    'price' => 4
+  }
+)
+
  film1.save()
+ film2.save()
 
  ticket1 = Ticket.new(
    {
