@@ -30,6 +30,13 @@ class Customer
     SqlRunner.run(sql, values)
   end
 
+  def films()
+    sql = "SELECT films.title FROM films INNER JOIN tickets ON films.id = tickets.film_id WHERE tickets.customer_id = $1"
+    values = [@id]
+    films = SqlRunner.run(sql, values)
+    return films.map { |film| film['title'] }
+  end
+
   def self.delete_all()
     sql = "DELETE FROM customers"
     SqlRunner.run(sql)
