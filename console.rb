@@ -12,3 +12,12 @@ customer1 = Customer.new(
 )
 
 customer1.save()
+
+film1 = Film.new(
+  {
+    'title' => "The Lord Of The Rings, Fellowship Of The Ring",
+    'price' => 5
+  }
+)
+
+ film1.save()
