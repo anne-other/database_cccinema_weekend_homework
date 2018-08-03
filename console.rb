@@ -1,3 +1,5 @@
+require('pry')
+
 require_relative('models/customer.rb')
 require_relative('models/film.rb')
 require_relative('models/ticket.rb')
@@ -32,3 +34,6 @@ film1 = Film.new(
  )
 
 ticket1.save()
+
+binding.pry
+nil
