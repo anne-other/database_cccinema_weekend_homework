@@ -37,6 +37,10 @@ class Film
     return customers.map { |customer| customer['name']}
   end
 
+  def tickets()
+    return customers().size()
+  end
+
   def self.delete_all()
     sql = "DELETE FROM films"
     SqlRunner.run(sql)
