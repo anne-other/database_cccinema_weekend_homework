@@ -46,6 +46,10 @@ class Customer
     @funds -= price
   end
 
+  def tickets()
+    return films().size()
+  end
+
   def self.delete_all()
     sql = "DELETE FROM customers"
     SqlRunner.run(sql)
