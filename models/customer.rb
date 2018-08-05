@@ -40,6 +40,7 @@ class Customer
   def buy_tickets(ticket)
     price = ticket.sell_tickets()
     @funds -= price
+    update()
   end
 
   def tickets()
