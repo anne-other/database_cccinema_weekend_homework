@@ -37,6 +37,11 @@ class Screening
     return tickets.map { |ticket| Ticket.new(ticket) }.size()
   end
 
+  def max_tickets()
+    max = 2
+    number_of_tickets() <= max ? true : false
+  end
+
   def self.delete_all()
     sql = "DELETE FROM screenings"
     SqlRunner.run(sql)

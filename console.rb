@@ -24,8 +24,16 @@ customer2 = Customer.new(
   }
 )
 
+customer3 = Customer.new(
+  {
+    'name' => "Anna",
+    'funds' => 50
+  }
+)
+
 customer1.save()
 customer2.save()
+customer3.save()
 
 film1 = Film.new(
   {
@@ -99,10 +107,19 @@ film2 = Film.new(
    }
  )
 
+ ticket5 = Ticket.new(
+   {
+     'customer_id' => customer3.id,
+     'film_id' => film1.id,
+     'screening_id' => screening1.id
+   }
+ )
+
 ticket1.save(customer1)
 ticket2.save(customer2)
 ticket3.save(customer1)
 ticket4.save(customer2)
+ticket5.save(customer3)
 
 binding.pry
 nil
