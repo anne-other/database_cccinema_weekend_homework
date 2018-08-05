@@ -70,10 +70,10 @@ film2 = Film.new(
    }
  )
 
-ticket1.save()
-ticket2.save()
-ticket3.save()
-ticket4.save()
+ticket1.save(customer1)
+ticket2.save(customer2)
+ticket3.save(customer1)
+ticket4.save(customer2)
 
 binding.pry
 nil

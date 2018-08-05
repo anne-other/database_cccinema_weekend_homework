@@ -11,11 +11,20 @@ class Ticket
     @film_id = options['film_id']
   end
 
-  def save()
+  def save(customer)
     sql = "INSERT INTO tickets (customer_id, film_id) VALUES ($1, $2) RETURNING id"
     values = [@customer_id, @film_id]
     ticket = SqlRunner.run(sql, values)
     @id = ticket[0]['id'].to_i()
+    customer.buy_tickets(self)
+  end
+
+  def sell_tickets()
+    sql = "SELECT films.price FROM films INNER JOIN tickets ON films.id = $1 WHERE tickets.customer_id = $2"
+    values = [@film_id, @customer_id]
+    prices = SqlRunner.run(sql, values)
+    price = prices[0]['price'].to_i()
+    return price
   end
 
   def update()
