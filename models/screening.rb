@@ -30,6 +30,13 @@ class Screening
     SqlRunner.run(sql, values)
   end
 
+  def number_of_tickets()
+    sql = "SELECT tickets.* FROM tickets WHERE tickets.screening_id = $1"
+    values = [@id]
+    tickets = SqlRunner.run(sql, values)
+    return tickets.map { |ticket| Ticket.new(ticket) }.size()
+  end
+
   def self.delete_all()
     sql = "DELETE FROM screenings"
     SqlRunner.run(sql)

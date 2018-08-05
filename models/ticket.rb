@@ -20,14 +20,6 @@ class Ticket
     customer.buy_tickets(self)
   end
 
-  def sell_tickets()
-    sql = "SELECT films.price FROM films INNER JOIN tickets ON films.id = $1 WHERE tickets.customer_id = $2"
-    values = [@film_id, @customer_id]
-    prices = SqlRunner.run(sql, values)
-    price = prices[0]['price'].to_i()
-    return price
-  end
-
   def update()
     sql = "UPDATE tickets SET (customer_id, film_id, screening_id) = ($1, $2, $3) WHERE id = $3"
     values = [@customer_id, @film_id, @screening_id, @id]
@@ -39,6 +31,15 @@ class Ticket
     values = [@id]
     SqlRunner.run(sql, values)
   end
+
+  def sell_tickets()
+    sql = "SELECT films.price FROM films INNER JOIN tickets ON films.id = $1 WHERE tickets.customer_id = $2"
+    values = [@film_id, @customer_id]
+    prices = SqlRunner.run(sql, values)
+    price = prices[0]['price'].to_i()
+    return price
+  end
+
 
   def self.delete_all()
     sql = "DELETE FROM tickets"
