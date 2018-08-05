@@ -37,6 +37,14 @@ class Customer
     return films.map { |film| film['title'] }
   end
 
+  def buy_ticket()
+    sql = "SELECT films.price FROM films INNER JOIN tickets ON films.id = tickets.film_id WHERE tickets.customer_id = $1"
+    values = [@id]
+    prices = SqlRunner.run(sql, values)
+    price = prices[0]['price'].to_i()
+    @funds -= price
+  end
+
   def self.delete_all()
     sql = "DELETE FROM customers"
     SqlRunner.run(sql)
