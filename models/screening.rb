@@ -30,6 +30,11 @@ class Screening
     SqlRunner.run(sql, values)
   end
 
+  def self.delete_all()
+    sql = "DELETE FROM screenings"
+    SqlRunner.run(sql)
+  end
+
   def self.all()
     sql = "SELECT * FROM screenings"
     screenings = SqlRunner.run(sql)
