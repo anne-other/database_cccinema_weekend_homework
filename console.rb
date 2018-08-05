@@ -115,11 +115,11 @@ film2 = Film.new(
    }
  )
 
-ticket1.save(customer1)
-ticket2.save(customer2)
-ticket3.save(customer1)
-ticket4.save(customer2)
-ticket5.save(customer3)
+ticket1.save(customer1, screening1)
+ticket2.save(customer2, screening1)
+ticket3.save(customer1, screening2)
+ticket4.save(customer2, screening3)
+ticket5.save(customer3, screening1)
 
 binding.pry
 nil

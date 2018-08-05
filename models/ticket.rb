@@ -12,12 +12,16 @@ class Ticket
     @screening_id = options['screening_id']
   end
 
-  def save(customer)
-    sql = "INSERT INTO tickets (customer_id, film_id, screening_id) VALUES ($1, $2, $3) RETURNING id"
-    values = [@customer_id, @film_id, @screening_id]
-    ticket = SqlRunner.run(sql, values)
-    @id = ticket[0]['id'].to_i()
-    customer.buy_tickets(self)
+  def save(customer, screening)
+    if screening.max_tickets() == true
+      sql = "INSERT INTO tickets (customer_id, film_id, screening_id) VALUES ($1, $2, $3) RETURNING id"
+      values = [@customer_id, @film_id, @screening_id]
+      ticket = SqlRunner.run(sql, values)
+      @id = ticket[0]['id'].to_i()
+      customer.buy_tickets(self)
+    else
+      return "The screen is full"
+    end
   end
 
   def update()
