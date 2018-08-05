@@ -52,4 +52,12 @@ class Film
     return films.map { |film| Film.new(film)}
   end
 
+  def most_popular_time()
+    sql = "SELECT screenings.film_time FROM screenings INNER JOIN tickets ON screenings.id = tickets.screening_id WHERE tickets.film_id = $1"
+    values = [@id]
+    screenings = SqlRunner.run(sql, values)
+    times = screenings.map { |screening| screening['film_time']}
+    return times.max_by { |time| times.count(time)}
+  end
+
 end
